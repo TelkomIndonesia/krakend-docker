@@ -23,6 +23,9 @@ COPY --from=krakend /src/krakend-ce/krakend /usr/local/bin/krakend
 WORKDIR /etc/krakend
 RUN echo '{ "version": 3 }' > krakend.json
 
+COPY ./entrypoint.sh /
+ENV KRAKEND_KCL_FILE ""
+
 EXPOSE 8000 8090
-ENTRYPOINT ["/usr/local/bin/krakend"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "run", "-c", "/etc/krakend/krakend.json" ]
