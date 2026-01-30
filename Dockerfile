@@ -11,10 +11,7 @@ ARG KRAKEND_VERSION
 WORKDIR /src
 RUN git clone https://github.com/krakend/krakend-ce \
     && cd krakend-ce \
-    && git checkout v${KRAKEND_VERSION} \
-    && go mod edit -replace=github.com/luraproject/lura/v2=github.com/telkomIndonesia/lura/v2@f290edb4d51d9e2658187b0042041ab248ce0df5 \
-    && go mod tidy \
-    && cat go.mod
+    && git checkout v${KRAKEND_VERSION}
 RUN cd krakend-ce && make build
 
 
